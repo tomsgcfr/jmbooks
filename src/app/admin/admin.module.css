@@ -1,0 +1,177 @@
+.container {
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    font-family: inherit;
+}
+
+.header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.logoutButton {
+    background: white;
+    color: #2c3e50;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.logoutButton:hover {
+    background: #f0f0f0;
+}
+
+.main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.instructions {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: #444;
+    border-left: 5px solid #5c8d89;
+}
+
+.grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card[open] {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin: 1rem 0;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    /* removes default arrow in some browsers */
+}
+
+.summary::-webkit-details-marker {
+    display: none;
+}
+
+.summary:hover {
+    background-color: #fdfdfd;
+}
+
+.summaryContent {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.thumb {
+    width: 50px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.summaryText h2 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.price {
+    margin: 0;
+    color: #5c8d89;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.editBtn {
+    background: #eef2f5;
+    color: #2c3e50;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.card[open] .editBtn {
+    background: #2c3e50;
+    color: white;
+    content: "Close";
+}
+
+.editFormContainer {
+    padding: 1.5rem;
+    border-top: 1px solid #eee;
+    background-color: #fafafa;
+}
+
+.editForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.editForm label {
+    font-weight: bold;
+    color: #555;
+}
+
+.editForm input,
+.editForm textarea {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.editForm input:focus,
+.editForm textarea:focus {
+    outline: none;
+    border-color: #5c8d89;
+}
+
+.saveButton {
+    background-color: #5c8d89;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+
+.saveButton:hover {
+    background-color: #4a7572;
+}
