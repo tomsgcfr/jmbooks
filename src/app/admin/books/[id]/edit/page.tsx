@@ -4,6 +4,8 @@ import { prisma } from '../../../../../lib/prisma'
 import { updateBook } from '../../actions'
 import styles from '../../books.module.css'
 
+export const dynamic = 'force-dynamic'
+
 export default async function EditBookPage(props: { params: Promise<{ id: string }> }) {
     const params = await props.params
     const book = await prisma.product.findUnique({

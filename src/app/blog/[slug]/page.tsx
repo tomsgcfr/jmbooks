@@ -6,6 +6,8 @@ import { prisma } from '../../../lib/prisma'
 import CommentSection from '../../../components/CommentSection'
 import ShareButtons from '../../../components/ShareButtons'
 
+export const dynamic = 'force-dynamic'
+
 export default async function BlogPostPage(props: { params: Promise<{ slug: string }> }) {
     const params = await props.params
     const post = await prisma.blogPost.findUnique({

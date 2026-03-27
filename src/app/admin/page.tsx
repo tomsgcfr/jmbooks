@@ -3,6 +3,8 @@ import styles from './admin.module.css'
 import { logout } from './login/actions'
 import { prisma } from '../../lib/prisma'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminDashboard() {
     const pendingCount = await prisma.comment.count({
         where: { approved: false },

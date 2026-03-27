@@ -4,6 +4,8 @@ import { logout } from '../login/actions'
 import { deleteBlogPost, togglePublish } from './actions'
 import styles from './blog.module.css'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminBlogPage() {
     const posts = await prisma.blogPost.findMany({
         orderBy: { createdAt: 'desc' },

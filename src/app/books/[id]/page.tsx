@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from './detail.module.css'
 import { prisma } from '../../../lib/prisma'
+
+export const dynamic = 'force-dynamic'
 import CommentSection from '../../../components/CommentSection'
 
 export default async function BookDetail(props: { params: Promise<{ id: string }> }) {

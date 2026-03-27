@@ -4,6 +4,8 @@ import { logout } from '../login/actions'
 import { deleteSubscriber } from './actions'
 import styles from './subscribers.module.css'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminSubscribersPage() {
     const subscribers = await prisma.subscriber.findMany({
         orderBy: { subscribedAt: 'desc' },

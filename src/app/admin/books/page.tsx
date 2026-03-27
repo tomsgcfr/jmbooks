@@ -4,6 +4,8 @@ import { logout } from '../login/actions'
 import DeleteBookButton from './DeleteBookButton'
 import styles from './books.module.css'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminBooksPage() {
     const books = await prisma.product.findMany({
         orderBy: { createdAt: 'asc' },

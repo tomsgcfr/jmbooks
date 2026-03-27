@@ -4,6 +4,8 @@ import { logout } from '../login/actions'
 import { approveComment, deleteComment, adminReply } from './actions'
 import styles from './comments.module.css'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminCommentsPage() {
     const pendingComments = await prisma.comment.findMany({
         where: { approved: false },
