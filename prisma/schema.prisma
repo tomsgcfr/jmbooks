@@ -3,33 +3,66 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider  = "sqlite"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  title       String
-  description String
-  price       Float
-  imageUrl    String?
-  isBundle    Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            String    @id @default(uuid())
+  title         String
+  description   String
+  imageUrl      String?
+  pdfUrl        String?
+  downloadCount Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  comments      Comment[]
 }
 
-model Order {
-  id            String   @id @default(uuid())
-  customerName  String
-  customerEmail String
-  address       String
-  city          String
-  province      String
-  postalCode    String
-  totalAmount   Float
-  status        String   @default("PENDING") // PENDING, PAID, SHIPPED
-  items         String   // JSON string of item IDs and quantities
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+model BlogPost {
+  id        String    @id @default(uuid())
+  title     String
+  slug      String    @unique
+  content   String
+  excerpt   String?
+  imageUrl  String?
+  published Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  comments  Comment[]
+}
+
+model AdminSetting {
+  key   String @id
+  value String
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Subscriber {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  subscribedAt DateTime @default(now())
+}
+
+model Comment {
+  id         String    @id @default(uuid())
+  name       String
+  email      String
+  content    String
+  approved   Boolean   @default(false)
+  parentId   String?
+  parent     Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies    Comment[] @relation("CommentReplies")
+  bookId     String?
+  book       Product?  @relation(fields: [bookId], references: [id])
+  blogPostId String?
+  blogPost   BlogPost? @relation(fields: [blogPostId], references: [id])
+  createdAt  DateTime  @default(now())
 }

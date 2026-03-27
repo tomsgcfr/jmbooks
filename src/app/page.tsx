@@ -1,20 +1,17 @@
-import { PrismaClient } from '@prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './page.module.css'
-import AddToCartButton from '../components/AddToCartButton'
-
-const prisma = new PrismaClient()
+import { prisma } from '../lib/prisma'
 
 export default async function Home() {
   const books = await prisma.product.findMany({
-    where: { isBundle: false },
     orderBy: { createdAt: 'asc' },
   })
 
-  const bundles = await prisma.product.findMany({
-    where: { isBundle: true },
-    orderBy: { createdAt: 'asc' },
+  const recentPosts = await prisma.blogPost.findMany({
+    where: { published: true },
+    orderBy: { createdAt: 'desc' },
+    take: 3,
   })
 
   return (
@@ -25,10 +22,10 @@ export default async function Home() {
           <h1>Discover the Freedom of Grace</h1>
           <p>
             Uplifting books and teachings by Jeannette Musselman centered around
-            Jesus Christ and the New Covenant of Grace.
+            Jesus Christ and the New Covenant of Grace. All books are free to download.
           </p>
-          <Link href="/shop" className="btn-primary">
-            Explore All Books
+          <Link href="/books" className="btn-primary">
+            Browse Free Books
           </Link>
         </div>
       </section>
@@ -37,12 +34,12 @@ export default async function Home() {
       <section className={styles.featured}>
         <div className={styles.sectionHeader}>
           <h2>All Books</h2>
+          <Link href="/books" className={styles.viewAll}>View All</Link>
         </div>
         <div className={styles.bookGrid}>
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {books.map((book: any) => (
+          {books.map((book) => (
             <div key={book.id} className={styles.bookCard}>
-              <Link href={`/shop/${book.id}`} className={styles.bookImageContainer}>
+              <Link href={`/books/${book.id}`} className={styles.bookImageContainer}>
                 {book.imageUrl && (
                   <div className={styles.book3d}>
                     <Image
@@ -57,45 +54,44 @@ export default async function Home() {
                 )}
               </Link>
               <div className={styles.bookInfo}>
-                <Link href={`/shop/${book.id}`}><h3>{book.title}</h3></Link>
-                <p className={styles.price}>${book.price.toFixed(2)}</p>
-                <AddToCartButton product={book} className={styles.addToCartBtn} />
+                <Link href={`/books/${book.id}`}><h3>{book.title}</h3></Link>
+                <p className={styles.freeLabel}>Free Download</p>
+                <Link href={`/books/${book.id}`} className={styles.viewBookBtn}>
+                  View Book
+                </Link>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Bundles Section */}
-      {bundles.length > 0 && (
+      {/* Recent Blog Posts */}
+      {recentPosts.length > 0 && (
         <section className={styles.featured}>
           <div className={styles.sectionHeader}>
-            <h2>Book Bundles</h2>
+            <h2>Latest from the Blog</h2>
+            <Link href="/blog" className={styles.viewAll}>View All</Link>
           </div>
-          <div className={styles.bookGrid}>
-            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            {bundles.map((bundle: any) => (
-              <div key={bundle.id} className={styles.bookCard}>
-                <Link href={`/shop/${bundle.id}`} className={styles.bookImageContainer}>
-                  {bundle.imageUrl && (
-                    <div className={styles.book3d}>
-                      <Image
-                        src={bundle.imageUrl}
-                        alt={bundle.title}
-                        fill
-                        className={styles.bookCover}
-                        sizes="(max-width: 768px) 100vw, 300px"
-                      />
-                      <div className={styles.bookSpine}></div>
-                    </div>
-                  )}
-                </Link>
-                <div className={styles.bookInfo}>
-                  <Link href={`/shop/${bundle.id}`}><h3>{bundle.title}</h3></Link>
-                  <p className={styles.price}>${bundle.price.toFixed(2)}</p>
-                  <AddToCartButton product={bundle} className={styles.addToCartBtn} />
+          <div className={styles.blogGrid}>
+            {recentPosts.map((post) => (
+              <Link key={post.id} href={`/blog/${post.slug}`} className={styles.blogCard}>
+                {post.imageUrl && (
+                  <div className={styles.blogImageContainer}>
+                    <Image
+                      src={post.imageUrl}
+                      alt={post.title}
+                      fill
+                      className={styles.blogImage}
+                      sizes="(max-width: 768px) 100vw, 400px"
+                    />
+                  </div>
+                )}
+                <div className={styles.blogCardContent}>
+                  <h3>{post.title}</h3>
+                  {post.excerpt && <p>{post.excerpt}</p>}
+                  <span className={styles.readMore}>Read More &rarr;</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

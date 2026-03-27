@@ -1,0 +1,86 @@
+.editor {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+    background: #fafafa;
+}
+
+.toolbar button {
+    background: #eef2f5;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toolbar button:hover {
+    background: #dce3e8;
+}
+
+.toolbar button.active {
+    background: #5c8d89;
+    color: white;
+}
+
+.content {
+    min-height: 300px;
+    padding: 1rem;
+}
+
+.content :global(.tiptap) {
+    min-height: 280px;
+    outline: none;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.content :global(.tiptap) h2 {
+    font-size: 1.5rem;
+    margin: 1.5rem 0 0.75rem;
+}
+
+.content :global(.tiptap) h3 {
+    font-size: 1.25rem;
+    margin: 1.25rem 0 0.5rem;
+}
+
+.content :global(.tiptap) p {
+    margin-bottom: 0.75rem;
+}
+
+.content :global(.tiptap) ul,
+.content :global(.tiptap) ol {
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.content :global(.tiptap) blockquote {
+    border-left: 3px solid #5c8d89;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: #555;
+    font-style: italic;
+}
+
+.content :global(.tiptap) img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.content :global(.tiptap) a {
+    color: #5c8d89;
+    text-decoration: underline;
+}

@@ -70,3 +70,29 @@
   font-size: 0.85rem;
   margin: -0.5rem 0 0;
 }
+
+.success {
+  color: #27ae60;
+  font-size: 0.85rem;
+  margin: -0.5rem 0 0;
+}
+
+.forgotLink {
+  background: none;
+  border: none;
+  color: #5c8d89;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.forgotLink:hover {
+  color: #4a7572;
+}
+
+.forgotLink:disabled {
+  color: #999;
+  cursor: not-allowed;
+}

@@ -16,6 +16,7 @@
 .header h1 {
     margin: 0;
     font-size: 1.5rem;
+    color: white;
 }
 
 .logoutButton {
@@ -44,134 +45,59 @@
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     margin-bottom: 2rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #444;
     border-left: 5px solid #5c8d89;
 }
 
-.grid {
+/* Dashboard Cards */
+.dashboardGrid {
     display: grid;
-    gap: 1rem;
-}
-
-.card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.card[open] {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    margin: 1rem 0;
-}
-
-.summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    cursor: pointer;
-    list-style: none;
-    /* removes default arrow in some browsers */
-}
-
-.summary::-webkit-details-marker {
-    display: none;
-}
-
-.summary:hover {
-    background-color: #fdfdfd;
-}
-
-.summaryContent {
-    display: flex;
-    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 
-.thumb {
-    width: 50px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 4px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+.dashboardCard {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
 }
 
-.summaryText h2 {
-    margin: 0 0 0.25rem 0;
-    font-size: 1.2rem;
-    color: #333;
+.dashboardCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.price {
-    margin: 0;
-    color: #5c8d89;
-    font-weight: bold;
-    font-size: 1.1rem;
+.cardIcon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1rem;
 }
 
-.editBtn {
-    background: #eef2f5;
+.dashboardCard h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
     color: #2c3e50;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    font-weight: bold;
 }
 
-.card[open] .editBtn {
-    background: #2c3e50;
-    color: white;
-    content: "Close";
-}
-
-.editFormContainer {
-    padding: 1.5rem;
-    border-top: 1px solid #eee;
-    background-color: #fafafa;
-}
-
-.editForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.editForm label {
-    font-weight: bold;
-    color: #555;
-}
-
-.editForm input,
-.editForm textarea {
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: inherit;
+.dashboardCard p {
+    color: #777;
     font-size: 1rem;
 }
 
-.editForm input:focus,
-.editForm textarea:focus {
-    outline: none;
-    border-color: #5c8d89;
-}
-
-.saveButton {
-    background-color: #5c8d89;
+.badge {
+    display: inline-block;
+    background: #e74c3c;
     color: white;
-    border: none;
-    padding: 1rem;
-    border-radius: 6px;
-    font-size: 1.1rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
     font-weight: bold;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: background-color 0.2s;
-}
-
-.saveButton:hover {
-    background-color: #4a7572;
+    margin-top: 0.75rem;
 }

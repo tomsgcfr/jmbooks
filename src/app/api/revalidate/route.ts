@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 
 export async function GET() {
     revalidatePath('/')
-    revalidatePath('/shop')
+    revalidatePath('/books')
+    revalidatePath('/blog')
     return NextResponse.json({ revalidated: true, now: Date.now() })
 }

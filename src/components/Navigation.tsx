@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useCart } from './CartContext'
+import { usePathname } from 'next/navigation'
 
 export default function Navigation() {
-    const { totalItems, setCartOpen } = useCart()
+    const pathname = usePathname()
 
     return (
         <nav>
@@ -21,13 +21,16 @@ export default function Navigation() {
                     />
                 </Link>
             </div>
-            <div>
-                <button
-                    className="cart-btn"
-                    onClick={() => setCartOpen(true)}
-                >
-                    Cart ({totalItems})
-                </button>
+            <div className="nav-links">
+                <Link href="/" className={`nav-link ${pathname === '/' ? 'nav-link-active' : ''}`}>
+                    Home
+                </Link>
+                <Link href="/books" className={`nav-link ${pathname.startsWith('/books') ? 'nav-link-active' : ''}`}>
+                    Books
+                </Link>
+                <Link href="/blog" className={`nav-link ${pathname.startsWith('/blog') ? 'nav-link-active' : ''}`}>
+                    Blog
+                </Link>
             </div>
         </nav>
     )
