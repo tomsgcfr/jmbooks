@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { randomBytes } from 'crypto'
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend'
 import { prisma } from '../../../lib/prisma'
 
 const SESSION_TOKEN = 'admin_authenticated'
@@ -76,17 +76,11 @@ export async function forgotPassword() {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
     const resetLink = `${baseUrl}/admin/reset-password?token=${token}`
 
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
-        },
-    })
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     try {
-        await transporter.sendMail({
-            from: process.env.SMTP_USER,
+        await resend.emails.send({
+            from: 'JM Books <noreply@jmbooks.online>',
             to: ADMIN_EMAIL,
             subject: 'Password Reset - Admin Dashboard',
             html: `
@@ -101,7 +95,7 @@ export async function forgotPassword() {
         })
         return { success: true }
     } catch {
-        return { error: 'Failed to send reset email. Please check SMTP configuration.' }
+        return { error: 'Failed to send reset email. Please try again later.' }
     }
 }
 
