@@ -1,9 +1,16 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../page.module.css'
 import { prisma } from '../../lib/prisma'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+    title: "Free Christian Books",
+    description: "Download free Christian books by Jeannette Musselman on grace, healing, faith, and the New Covenant of Jesus Christ.",
+    alternates: { canonical: "/books" },
+}
 
 export default async function BooksPage() {
     const books = await prisma.product.findMany({

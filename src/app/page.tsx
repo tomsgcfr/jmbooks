@@ -16,8 +16,28 @@ export default async function Home() {
     take: 3,
   })
 
+  const personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Jeannette Musselman',
+    url: 'https://jmbooks.online',
+    image: 'https://jmbooks.online/author-nobg.png',
+    description: 'Christian author and teacher focused on grace, healing, and the New Covenant of Jesus Christ.',
+    knowsAbout: ['Christianity', 'Grace', 'New Covenant', 'Faith', 'Healing'],
+  }
+
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Jeannette Musselman Books',
+    url: 'https://jmbooks.online',
+    description: 'Free uplifting books and teachings centered around Jesus Christ and the New Covenant of Grace.',
+  }
+
   return (
     <main className={styles.main}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
