@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description: "Uplifting books centered around Jesus Christ and the New Covenant of Grace.",
   manifest: "/manifest.json",
   icons: {
+    icon: "/logo.png",
     apple: "/logo.png",
   },
   appleWebApp: {
